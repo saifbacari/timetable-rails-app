@@ -6,6 +6,7 @@ class ShopsController < ApplicationController
     
     def new
         @shop = Shop.new
+        tod = Tod::TimeOfDay.new 0
     end
     
 
@@ -15,12 +16,14 @@ class ShopsController < ApplicationController
         redirect_to shop_path(@shop)
     end
 
-   
-
     private
 
     def shop_params
         params.require(:shop).permit(:name)
+    end
+
+    def shop_hours_params
+        params.require(:shop_hour).permit(preference: {})
     end
 
 end
