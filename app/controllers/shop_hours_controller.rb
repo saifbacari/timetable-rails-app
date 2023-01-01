@@ -1,3 +1,2 @@
 class ShopHoursController < ApplicationController
-
 end
