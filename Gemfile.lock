@@ -215,6 +215,7 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
+  i18n
   jbuilder
   jsbundling-rails
   puma (~> 5.0)

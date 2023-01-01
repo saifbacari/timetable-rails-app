@@ -1,1 +1,15 @@
 <h2><%= @shop.name %></h2>
+<%= test = @shop_hour.hours.keys %>
+
+
+
+<ul>
+    <% test.each_with_index do |element,index| %> 
+    <li><%= Date::DAYNAMES[(index + 1) % 7] %>  - <%= @shop_hour.hours["#{element}"].first[0]%> - <%= @shop_hour.hours["#{element}"].first[1]%> - 
+                                                  <%= @shop_hour.hours["#{element}"].first(2).last[0]%> - <%= @shop_hour.hours["#{element}"].first(2).last[1]%>
+    </li>
+     
+     <% end %>
+
+   
+</ul>

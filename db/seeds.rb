@@ -1,25 +1,50 @@
 require 'working_hours'
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+Shop.destroy_all
+ShopHour.destroy_all
 
-puts "creating shop"
+shop_test = Shop.create(name: "Le galbé d'Amazonie")
+Shop.create(name: "Fiduciaire")
+Shop.create(name: "Dalloz")
+Shop.create(name: "France Boutique")
+Shop.create(name: "Creeple Creek Shop")
 
-burger_shop = Shop.create!(name: 'Burger King')
-bakery = Shop.create!(name: 'La boulangerie de Michel')
-restaurant = Shop.create!(name: 'Volcano Roll')
+shop_hour_test =  ShopHour.create!(shop_id: 1, hours: 
+  {"lundi"=>{"09:00"=>"12:00", "13:00"=>"17:00"},                  
+  "mardi"=>{"09:00"=>"12:00", "13:00"=>"17:00"},                  
+  "mercredi"=>{"09:00"=>"12:00", "13:00"=>"17:00"},
+  "jeudi"=>{"09:00"=>"12:00", "13:00"=>"17:05:30"},
+  "vendredi"=>{"19:00"=>"21:00"},
+  "samedi"=>{"19:00"=>"21:00"},
+  "dimanche"=>{"19:00"=>"21:00"}}
+)
 
-puts restaurant.name
+shop_hour_test2 =ShopHour.create!(shop_id: 2, hours: 
+  {"lundi"=>{"09:00"=>"12:00", "13:00"=>"17:00"},                  
+  "mardi"=>{"09:00"=>"12:00", "13:00"=>"17:00"},                  
+  "mercredi"=>{"09:00"=>"12:00", "13:00"=>"17:00"},
+  "jeudi"=>{"09:00"=>"12:00", "13:00"=>"17:05:30"},
+  "vendredi"=>{"19:00"=>"21:00"},
+  "samedi"=>{"19:00"=>"21:00"},
+  "dimanche"=>{"19:00"=>"21:00"}}
+)
 
-puts WorkingHours::Config.working_hours = {
-    :tue => {'09:00' => '12:00', '13:00' => '17:00'},
-    :wed => {'09:00' => '12:00', '13:00' => '17:00'},
-    :thu => {'09:00' => '12:00', '13:00' => '17:00'},
-    :fri => {'09:00' => '12:00', '13:00' => '17:05:30'},
-    :sat => {'19:00' => '24:00'}
-  }
+shop_hour_test3 =ShopHour.create!(shop_id: 3, hours: 
+  {"lundi"=>{"09:00"=>"12:00", "13:00"=>"17:00"},                  
+  "mardi"=>{"09:00"=>"12:00", "13:00"=>"17:00"},                  
+  "mercredi"=>{"09:00"=>"12:00", "13:00"=>"17:00"},
+  "jeudi"=>{"09:00"=>"12:00", "13:00"=>"17:05:30"},
+  "vendredi"=>{"19:00"=>"21:00"},
+  "samedi"=>{"19:00"=>"21:00"},
+  "dimanche"=>{"19:00"=>"21:00"}}
+)
+
+shop_hour_test3 =ShopHour.create!(shop_id: 4, hours: 
+{"lundi"=>{"09:00"=>"12:00", "13:00"=>"17:00"},
+    "mardi"=>{"09:00"=>"12:00", "13:00"=>"17:00"},
+    "mercredi"=>{"09:00"=>"12:00", "13:00"=>"17:00"},
+    "jeudi"=>{"09:00"=>"12:00", "13:00"=>"17:05:30"},
+    "vendredi"=>{"19:00"=>"21:00"},
+    "samedi"=>{"19:00"=>"21:00"},
+    "dimanche"=>{""=>""}}
+)
