@@ -32,6 +32,9 @@ gem 'working_hours'
 gem 'tod'
 
 gem 'i18n'
+
+gem 'i18n-timezones'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
