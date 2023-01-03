@@ -1,0 +1,46 @@
+<% array_weekday = Array.new %>
+<% array_weekday_in_french = Array.new %>
+
+<% for n in (0..6) %>
+    <% day = Date.today + n %>
+    <% day_in_french = I18n.localize Date.today + n, format: :very_short %>
+    <% array_weekday << day.strftime("%a").downcase %>
+    <% array_weekday_in_french << day_in_french %>
+<% end %>
+
+
+<ul>
+    <% array_weekday.each_with_index do |element,index| %>
+          <% if @shop_hour.hours["#{element}"].first[0] == "" && index == 0 %>
+            <b><li id="current-date"> Horaires: <%= array_weekday_in_french[index].capitalize%> - Fermé </li></b>
+          
+            <% elsif index == 0 %>  
+            <b>      
+                <li id="current-date"> Horaires: <%= array_weekday_in_french[index].capitalize %>
+                    - <%= @shop_hour.hours["#{element}"].first[0]%>
+                    - <%= @shop_hour.hours["#{element}"].first[1]%> 
+                    - <%= @shop_hour.hours["#{element}"].first(2).last[0]%>
+                    - <%= @shop_hour.hours["#{element}"].first(2).last[1]%>
+                </li>
+            </b>
+
+            <% elsif @shop_hour.hours["#{element}"].first[0] == "" %>
+                <li><%= array_weekday_in_french[index].capitalize%> - Fermé </li>
+            
+            <% elsif  @shop_hour.hours["#{element}"].first[0] == @shop_hour.hours["#{element}"].first(2).last[0] %>
+                <li><%= array_weekday_in_french[index].capitalize  %>
+                    - <%= @shop_hour.hours["#{element}"].first[0]%>
+                    - <%= @shop_hour.hours["#{element}"].first[1]%> 
+                </li> 
+
+            <% else %>
+                <li><%= array_weekday_in_french[index].capitalize  %>
+                - <%= @shop_hour.hours["#{element}"].first[0]%>
+                - <%= @shop_hour.hours["#{element}"].first[1]%> 
+                - <%= @shop_hour.hours["#{element}"].first(2).last[0]%>
+                - <%= @shop_hour.hours["#{element}"].first(2).last[1]%>
+                </li>   
+        <% end %>  
+      <% end %>
+</ul>
+
