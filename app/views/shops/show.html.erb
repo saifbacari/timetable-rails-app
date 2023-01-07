@@ -1,3 +1,36 @@
 <h2><%= @shop.name %></h2>
 
-<%= render partial: 'timetable' %>
+
+<ul>
+    <% translate_eng_date.each_with_index do |element,index| %>
+          <% if @shop_hour.open_hour(element)== "" && index == 0 %>
+            <b><li id="current-date"> Horaires: <%= array_weekday_in_french[index].capitalize%> - Fermé </li></b>       
+            <% elsif index == 0 %>  
+            <b>      
+                <li id="current-date"> Horaires: <%= translate_french_date[index] %>
+                    - <%= @shop_hour.open_hour(element)%>
+                    - <%= @shop_hour.close_hour(element)%> 
+                    - <%= @shop_hour.re_open_hour(element)%>
+                    - <%= @shop_hour.re_close_hour(element)%>
+                </li>
+            </b>
+
+            <% elsif @shop_hour.open_hour(element) == "" %>
+                <li><%= translate_french_date[index].capitalize%> - Fermé </li>
+            
+            <% elsif  @shop_hour.open_hour(element) == @shop_hour.re_open_hour(element) %>
+                <li><%= translate_french_date[index].capitalize  %>
+                    - <%= @shop_hour.open_hour(element)%>
+                    - <%= @shop_hour.close_hour(element)%> 
+                </li> 
+
+            <% else %>
+                <li><%= translate_french_date[index].capitalize  %>
+                - <%= @shop_hour.open_hour(element)%>
+                - <%= @shop_hour.close_hour(element)%> 
+                - <%= @shop_hour.re_open_hour(element)%>
+                - <%= @shop_hour.re_close_hour(element)%>
+                </li>   
+        <% end %>  
+      <% end %>
+</ul>
